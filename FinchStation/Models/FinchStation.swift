@@ -42,12 +42,29 @@ struct Routes: Hashable, Codable, Identifiable {
 }
 
 struct StopTimes: Hashable, Codable, Identifiable {
-    var departure_time: String
+    fileprivate var departure_time: String
     var shape: String
     var departure_timestamp: Int
     var service_id: Int
     
     var id: String {
         return "\(departure_timestamp)_\(service_id)"
+    }
+    
+    var departureTime: String {
+        var formattedTime = departure_time
+        
+        let time = departure_time.dropLast()
+        let lastCharacter = departure_time.last
+        
+        if lastCharacter == "a" {
+            formattedTime = "\(time) AM"
+        }
+        
+        if lastCharacter == "p" {
+            formattedTime = "\(time) PM"
+        }
+        
+        return formattedTime
     }
 }

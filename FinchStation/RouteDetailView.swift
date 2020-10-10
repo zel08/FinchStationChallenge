@@ -13,21 +13,21 @@ struct RouteDetailView: View {
     var body: some View {
         VStack {
             List(routes.stop_times) { stopTime in
-                RouteRowView(stopTime: stopTime)
+                RouteDetailRowView(stopTime: stopTime)
             }
         }
         
     }
 }
 
-struct RouteRowView: View {
+struct RouteDetailRowView: View {
     var stopTime: StopTimes
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text(stopTime.shape)
                 .font(.body)
-            Text("Departure Time: \(stopTime.departure_time)")
+            Text("Departure Time: \(stopTime.departureTime)")
                 .font(.footnote)
         }
     }
